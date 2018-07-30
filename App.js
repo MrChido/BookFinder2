@@ -1,8 +1,10 @@
 import React from 'react';
 import {Dimensions, AppRegistry, StyleSheet, Text, View } from 'react-native';
 import {createStackNavigator} from 'react-navigation';
+
 import Toolbar from './aParts/toolBarP/toolBar.js';
-export default class App extends React.Component {
+import BookS from './aParts/booksP/books.js';
+class entry extends React.Component {
   render() {
     return (
       <View style= {styles.container}>
@@ -14,6 +16,18 @@ export default class App extends React.Component {
     );
   }
 }
+
+class Books extends React.Component {
+  render() {
+    return (
+      <View style= {styles.container}>
+        <Toolbar title= 'Books'/>
+       <BookS/>
+      </View>
+    );
+  }
+}
+
 const styles=StyleSheet.create({
   container:{
     backgroundColor: "#cccccc",
@@ -21,5 +35,20 @@ const styles=StyleSheet.create({
      },
 });
 
+const RootStack = createStackNavigator({
+  
+  entry:entry,
+  Books:Books,
+  },
+  {
+    initialRouteName:'Books',
+  },
+);
+
+export default class app extends React.Component{
+  render(){
+    return <RootStack />;
+  }
+}
 
 AppRegistry.registerComponent('bookFinder',() => bookFinder);
